@@ -67,7 +67,7 @@
 		id="clouds-2"
 	></div>
 
-	<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-6">
+	<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-6 select-none" draggable="false">
 	<p class="text-4xl text-grass-bright leading-2 text-center">you ship we suffer</p>
 	<p class="text-4xl text-grass leading-normal text-center">
 		<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club slack
@@ -81,13 +81,13 @@
 		<div
 			class="motion-safe:transition-transform duration-300 translate-y-20 ease-in hover:motion-safe:translate-y-40 justify-center items-center flex flex-col z-10"
 		>
-			<a href="https://submit.hackclub.com/touch-grass" class="relative">
+			<a href="https://submit.hackclub.com/touch-grass" class="flex flex-col items-center">
+				<p class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center">submit</p>
 				<img
 					src="/hand.png"
 					alt="Submit to Touch Grass"
-					class="block w-60 h-60 object-contain"
+					class="block w-28 h-28 object-contain"
 				/>
-				<p class="absolute -translate-y-8 -translate-x-1 bg-green-100 max-h-14 inset-0 flex items-center text-grass justify-center font-bold text-2xl pointer-events-none">Submit</p>
 			</a>
 		</div>
 		<div class="relative min-h-64">

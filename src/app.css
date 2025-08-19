@@ -19,3 +19,13 @@
     
     --font-sans: 'monogram', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+.bg-scanlines {
+    --scanlines-size: 4px;
+    background-image:
+        linear-gradient(to bottom, #003f10 var(--scanlines-size), transparent var(--scanlines-size)),
+        linear-gradient(#003817, #003817);
+    background-size: 100% calc(var(--scanlines-size) * 2), 100% 100%;
+    background-repeat: repeat-y, no-repeat;
+}
+
