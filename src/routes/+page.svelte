@@ -97,7 +97,7 @@
 		<!-- submit button -->
 		<a
 			href="https://submit.hackclub.com/touch-grass"
-			class="translate-y-44 justify-center items-center flex flex-col z-10 group cursor-pointer w-max mx-auto" bind:this={submitButton}
+			class="translate-y-52 justify-center items-center flex flex-col z-10 group cursor-pointer w-max mx-auto" bind:this={submitButton}
 			onclick={submit}
 		>
 			<span class="flex flex-col items-center">
@@ -119,6 +119,7 @@
 			</span>
 		</a>
 		<div class="relative min-h-64 max-sm:min-h-48">
+			<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-full min-w-200 bg-cover bg-bottom bg-no-repeat"></div>
 			<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
 			<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full h-full min-w-200 bg-contain bg-bottom-right bg-no-repeat max-sm:translate-y-8"></div>
 		</div>
