@@ -1,4 +1,20 @@
-<!-- Load Strava embed script -->
+<script lang='js'>
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    import { ScrollSmoother } from 'gsap/ScrollSmoother';
+
+    // Initialize GSAP ScrollTrigger and ScrollSmoother
+    ScrollTrigger.register();
+    ScrollSmoother.create({
+        wrapper: '.wrapper',
+        content: '.content',
+        smooth: 1.5,
+        effects: true,
+        smoothTouch: 0.1,
+        ignoreMobileResize: true,
+        normalizeScroll: true,
+        autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
+    });
+</script>
 <h1>Go Touch Grass</h1>
 <button on:click={() => window.location.href = 'https://submit.hackclub.com/touch-grass'}>
   Submit
