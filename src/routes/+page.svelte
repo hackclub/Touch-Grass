@@ -63,6 +63,8 @@
 		submitButton.dataset.pressed = "true";
 
 		setTimeout(() => {
+			submitted = false;
+			submitButton.dataset.pressed = "false";
 			window.location.href = "https://submit.hackclub.com/touch-grass";
 		}, 1750);
 	}
@@ -101,7 +103,7 @@
 			onclick={submit}
 		>
 			<span class="flex flex-col items-center">
-				<p class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-2 border-grass group-hover:text-grass-bright">submit</p>
+				<p class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-grass group-hover:text-grass-bright">submit</p>
 				<img
 					src="/hand-top.png"
 					alt=""
