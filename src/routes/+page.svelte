@@ -82,11 +82,13 @@
 		id="clouds-2"
 	></div>
 
-	<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-6 select-none" draggable="false">
-	<p class="text-4xl text-grass-bright leading-2 text-center">you ship we suffer</p>
-	<p class="text-4xl text-grass leading-normal text-center">
-		<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club slack
-	</p>
+	<div class="flex flex-col items-center w-full px-4">
+		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
+		<p class="text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
+		<p class="text-4xl text-grass leading-7 text-center">
+			<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club slack
+		</p>
+	</div>
 
 	<div class="w-full grow-1"></div>
 
@@ -116,9 +118,9 @@
 				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 			</span>
 		</a>
-		<div class="relative min-h-64">
-			<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full min-h-64 min-w-128 bg-contain bg-bottom-left bg-no-repeat"></div>
-			<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full min-h-64 min-w-128 bg-contain bg-bottom-right bg-no-repeat"></div>
+		<div class="relative min-h-64 max-sm:min-h-48">
+			<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
+			<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full h-full min-w-200 bg-contain bg-bottom-right bg-no-repeat max-sm:translate-y-8"></div>
 		</div>
 	</div>
 </div>
