@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -51,6 +51,21 @@
 		// 	});
 		// }
 	});
+
+	let submitButton: HTMLButtonElement;
+	let submitted = false;
+	function submit(e: MouseEvent) {
+		e.preventDefault();
+
+		if (submitted) return;
+		submitted = true;
+
+		submitButton.dataset.pressed = "true";
+
+		setTimeout(() => {
+			window.location = "https://submit.hackclub.com/touch-grass";
+		}, 1500);
+	}
 </script>
 
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center">
@@ -78,18 +93,29 @@
 	<!-- bottom content -->
 	<div class="relative w-full flex flex-col">
 		<!-- submit button -->
-		<div
-			class="motion-safe:transition-transform duration-300 translate-y-20 ease-in hover:motion-safe:translate-y-40 justify-center items-center flex flex-col z-10"
+		<a
+			href="https://submit.hackclub.com/touch-grass"
+			class="translate-y-44 justify-center items-center flex flex-col z-10 group cursor-pointer w-max mx-auto" bind:this={submitButton}
+			onclick={submit}
 		>
-			<a href="https://submit.hackclub.com/touch-grass" class="flex flex-col items-center">
-				<p class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center">submit</p>
+			<span class="flex flex-col items-center">
+				<p class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-2 border-grass group-hover:text-grass-bright">submit</p>
 				<img
-					src="/hand.png"
-					alt="Submit to Touch Grass"
-					class="block w-28 h-28 object-contain"
+					src="/hand-top.png"
+					alt=""
+					class="w-16 aspect-[18/22] object-contain"
 				/>
-			</a>
-		</div>
+				<div class="w-16 aspect-[18/29] overflow-hidden">
+					<img
+						src="/finger.png"
+						alt=""
+						class="w-16 aspect-[18/29] object-contain -translate-y-21/29 group-hover:-translate-y-16/29 transition-all group-data-pressed:translate-none group-data-pressed:duration-500 group-data-pressed:ease-in"
+					/>
+				</div>
+				<!-- circle effect for after submission -->
+				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 transition-transform duration-1500 ease-out group-data-pressed:scale-6000 delay-450"></div>
+			</span>
+		</a>
 		<div class="relative min-h-64">
 			<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full min-h-64 min-w-128 bg-contain bg-bottom-left bg-no-repeat"></div>
 			<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full min-h-64 min-w-128 bg-contain bg-bottom-right bg-no-repeat"></div>
