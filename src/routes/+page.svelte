@@ -4,8 +4,10 @@
   Submit
 </button>
 
-<h2>FAQs</h2>
 
+
+
+<h2>FAQs</h2>
 <div>
     <div>
         <h3>What is Touch Grass?</h3>
@@ -21,11 +23,15 @@
         <p>You can also try to get on our VIP list.</p>
     </div>
     <div>
-        <h3>What is the VIP list?</h3>
-        <p>What is special about the VIP list? Well, if you're on it, we'll runt 400m for every hour you spend on a shipped project.</p>
+        <h3>What's so special about the VIP list?</h3>
+        <p>Well, if you're on it, we'll run 400m for every hour you spend on a shipped project.</p>
     </div>
     <div>
         <h3>How can I get on the VIP list?</h3>
         <p>You can get on the VIP list by shipping a project that we think is cool, and that also encourages others to go outside.</p>
+    </div>
+    <div>
+        <h3>My question is unanswered, help???</h3>
+        <p>Feel free to ask it in the slack channel <a href="">#touch-grass.</p>
     </div>
 </div>
