@@ -2,6 +2,7 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	
+	
 	let { children } = $props();
 </script>
 
@@ -9,10 +10,10 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<nav>
+<!-- <nav>
 	<ul>
 		<li><a href="/">Home</a></li>
 		<li><a href="/running">Running</a></li>
 	</ul>
-</nav>
+</nav> -->
 {@render children?.()}

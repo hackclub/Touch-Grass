@@ -1,2 +1,9 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+@theme {
+    --color-sky-1: #228ac9;
+    --color-sky-2: #299fcd;
+    --color-sky-3: #69cef0;
+    --color-sky-4: #cdeaf2;
+}

@@ -1,53 +1,34 @@
-<script lang='js'>
-    import { ScrollTrigger } from 'gsap/ScrollTrigger';
-    import { ScrollSmoother } from 'gsap/ScrollSmoother';
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { ScrollSmoother } from "gsap/ScrollSmoother";
+    import { onMount } from 'svelte';
 
-    // Initialize GSAP ScrollTrigger and ScrollSmoother
-    ScrollTrigger.register();
-    ScrollSmoother.create({
-        wrapper: '.wrapper',
-        content: '.content',
-        smooth: 1.5,
-        effects: true,
-        smoothTouch: 0.1,
-        ignoreMobileResize: true,
-        normalizeScroll: true,
-        autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-    });
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+    onMount(() => {
+		// Register GSAP plugins
+		gsap.registerPlugin(ScrollTrigger);
+		
+		// Setup parallax for cloudy background
+		const cloudyBg = document.querySelector('.cloudy-bg-parallax');
+		if (cloudyBg) {
+			gsap.to(cloudyBg, {
+				yPercent: 20,
+				ease: "none",
+				scrollTrigger: {
+					trigger: cloudyBg,
+					start: "bottom bottom",
+					end: "bottom top",
+					scrub: true
+				}
+			});
+		}
+
+})
+
 </script>
-<h1>Go Touch Grass</h1>
-<button on:click={() => window.location.href = 'https://submit.hackclub.com/touch-grass'}>
-  Submit
-</button>
 
+<div class="bg-sky-1 w-full min-h-screen">
 
-
-
-<h2>FAQs</h2>
-<div>
-    <div>
-        <h3>What is Touch Grass?</h3>
-        <p>Touch Grass is a Hack Club YSWS where for every hour you spend on a shipped project, we'll run 200m.</p>
-    </div>
-    <div>
-        <h3>How can I participate?</h3>
-        <p>You can participate by shipping a project, and submitting it <a href="https://submit.hackclub.com/touch-grass">here</a>.</p>
-    </div>
-    <div>
-        <h3>Are there any ways for us to make you run more?</h3>
-        <p>Yes! You can make us run more by shipping more projects and encouraging your friends to do that as well.</p>
-        <p>You can also try to get on our VIP list.</p>
-    </div>
-    <div>
-        <h3>What's so special about the VIP list?</h3>
-        <p>Well, if you're on it, we'll run 400m for every hour you spend on a shipped project.</p>
-    </div>
-    <div>
-        <h3>How can I get on the VIP list?</h3>
-        <p>You can get on the VIP list by shipping a project that we think is cool, and that also encourages others to go outside.</p>
-    </div>
-    <div>
-        <h3>My question is unanswered, help???</h3>
-        <p>Feel free to ask it in the slack channel <a href="">#touch-grass.</p>
-    </div>
 </div>

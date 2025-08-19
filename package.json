@@ -21,8 +21,9 @@
 		"svelte-check": "^4.0.0",
 		"tailwindcss": "^4.0.0",
 		"typescript": "^5.0.0",
-		"vite": "^7.0.4",
-		"gsap/ScrollSmoother": "^3.11.5",
-		"gsap/ScrollTrigger": "^3.11.5"
+		"vite": "^7.0.4"
+	},
+	"dependencies": {
+		"gsap": "^3.13.0"
 	}
 }
