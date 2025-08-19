@@ -27,6 +27,10 @@
   });
 </script>
 
+<h1 class="hidden"> Completed Runs </h1>
+
+
+<h1> Our Running Portfolios </h1>
 <div bind:this={embedContainer}>
   <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="11341795836" data-style="standard" data-from-embed="false"></div>
 </div>
