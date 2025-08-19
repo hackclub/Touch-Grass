@@ -64,11 +64,11 @@
 
 		setTimeout(() => {
 			window.location.href = "https://submit.hackclub.com/touch-grass";
-		}, 1500);
+		}, 1750);
 	}
 </script>
 
-<div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center">
+<div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
 	<div
 		class="bg-[url(/clouds1.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top-0 w-full left-0 -z-10"
 		id="clouds-1"
@@ -113,7 +113,7 @@
 					/>
 				</div>
 				<!-- circle effect for after submission -->
-				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 transition-transform duration-1500 ease-out group-data-pressed:scale-6000 delay-450"></div>
+				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 			</span>
 		</a>
 		<div class="relative min-h-64">
