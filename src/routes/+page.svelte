@@ -52,7 +52,7 @@
 		// }
 	});
 
-	let submitButton: HTMLButtonElement;
+	let submitButton: HTMLAnchorElement;
 	let submitted = false;
 	function submit(e: MouseEvent) {
 		e.preventDefault();
@@ -63,7 +63,7 @@
 		submitButton.dataset.pressed = "true";
 
 		setTimeout(() => {
-			window.location = "https://submit.hackclub.com/touch-grass";
+			window.location.href = "https://submit.hackclub.com/touch-grass";
 		}, 1500);
 	}
 </script>
