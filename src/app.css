@@ -1,9 +1,21 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+@font-face {
+    font-family: 'monogram';
+    src: url('/fonts/monogram-extended.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 @theme {
     --color-sky-1: #228ac9;
     --color-sky-2: #299fcd;
     --color-sky-3: #69cef0;
     --color-sky-4: #cdeaf2;
+    --color-grass: #c7e553;
+    --color-grass-bright: #fbee26;
+    
+    --font-sans: 'monogram', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
