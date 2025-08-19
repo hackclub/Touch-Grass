@@ -86,7 +86,7 @@
 		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
 		<p class="text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
 		<p class="text-4xl text-grass leading-7 text-center">
-			<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club slack
+			<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club Slack
 		</p>
 	</div>
 
