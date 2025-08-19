@@ -1,6 +1,5 @@
 <script lang="ts">
 	import "../app.css";
-	import favicon from "$lib/assets/favicon.svg";
 	let { children, data } = $props();
 
 	let userInput = $state("");
@@ -11,16 +10,13 @@
 	}
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
-
 {#if data.isAuthenticated}
 	{@render children?.()}
 {:else}
 	<div
 		class="justify-center items-center flex flex-col h-screen bg-[url(/touch-grass.png)] bg-cover bg-left bg-no-repeat"
 	>
+		<p class="opacity-10 text-4xl absolute top-2 left-5 text-white">with &lt;3 from alex and augie</p>
 		<div>
 			<h1 class="text-4xl hidden">ATM this is only for Pro Grass Touchers</h1>
 			<div>
