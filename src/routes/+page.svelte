@@ -68,9 +68,17 @@
 			window.location.href = "https://submit.hackclub.com/touch-grass";
 		}, 1750);
 	}
+
+	function logout() {
+		document.cookie = `auth=; path=/; max-age=0;`;
+		window.location.reload();
+	}
 </script>
 
+
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
+	<button class="border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={logout}>log out</button>
+
 	<div
 		class="bg-[url(/clouds1.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top-0 w-full left-0 -z-10"
 		id="clouds-1"
