@@ -10,7 +10,7 @@
 	}
 </script>
 
-{#if data.isAuthenticated}
+{#if !data.isAuthenticated}
 	{@render children?.()}
 {:else}
 	<div
