@@ -154,7 +154,7 @@
 			class="translate-y-52 justify-center items-center flex flex-col z-10 group cursor-pointer w-max mx-auto" bind:this={submitButton}
 			onclick={submit}
 		>
-			<span class="flex flex-col items-center">
+			<span class="flex flex-col items-center scale-140">
 				<p class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-grass group-hover:text-grass-bright">submit</p>
 				<img
 					src="/hand-top.png"
@@ -169,7 +169,7 @@
 					/>
 				</div>
 				<!-- circle effect for after submission -->
-				<div class="rounded-full w-30 h-30 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
+				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 			</span>
 		</a>
 		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48">
