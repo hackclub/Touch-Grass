@@ -1,5 +1,5 @@
 <style>
-    @import '$lib/progressBar.css';
+    @import '$lib/progressbar.css';
 </style>
 <script lang="ts">
 	import { gsap } from "gsap";
