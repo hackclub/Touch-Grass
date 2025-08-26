@@ -1,11 +1,25 @@
+<style>
+    @import '$lib/progressbar.css';
+</style>
 <script lang="ts">
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import { ScrollSmoother } from "gsap/ScrollSmoother";
 	import { onMount } from "svelte";
+	import {json} from "@sveltejs/kit";
+
 
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+	let test = $state("");
+
+
+	async function getDistance() {
+        console.log("help");
+        const res = await fetch('/api/airtable');
+        const data = await res.json();
+		test= JSON.stringify(data);
+    }
 	onMount(() => {
 		// Register GSAP plugins
 		gsap.registerPlugin(ScrollTrigger);
@@ -77,8 +91,13 @@
 
 
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
-	<button class="border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={logout}>log out</button>
-
+	<button class=" border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
+	<div class="container">    
+  <div class="progress progress-moved">
+    <div class="progress-bar" >
+    </div>                       
+  </div> 
+</div>
 	<div
 		class="bg-[url(/clouds1.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top-0 w-full left-0 -z-10"
 		id="clouds-1"
@@ -128,7 +147,7 @@
 				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 			</span>
 		</a>
-		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48">>
+		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48">
 			<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-screen min-w-200 bg-contain bg-bottom bg-no-repeat"></div>
 			<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
 			<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full h-full min-w-200 bg-contain bg-bottom-right bg-no-repeat max-sm:translate-y-8"></div>

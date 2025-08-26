@@ -25,6 +25,7 @@
 	},
 	"dependencies": {
 		"@sveltejs/adapter-node": "^5.3.1",
+		"airtable": "^0.12.2",
 		"gsap": "^3.13.0"
 	}
 }
