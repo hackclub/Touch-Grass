@@ -147,8 +147,12 @@
 	<h2 class="text-4xl text-grass-bright">How can I participate?</h2>
 	<p class="text-grass">You can participate by shipping a project, and submitting it here.</p>
 
+
+	<h2 class="text-4xl text-grass-bright">Is this double dippable with Summer of Making?</h2>
+	<p class="text-grass">Yes!</p>
+
 	<h2 class="text-4xl text-grass-bright">Are there any ways for us to make you run more?</h2>
-	<p class="text-grass">Yes! You can make us run more by shipping more projects and encouraging your friends to do that as well.</p>
+	<p class="text-grass">Yes! You can make us run more by shipping more projects and encouraging your friends to do that as well. We will also match the distance you run on the day of submission.</p>
 
 	<p class="text-grass">You can also try to get on our VIP list.</p>
 
