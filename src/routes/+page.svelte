@@ -1,5 +1,5 @@
 <style>
-    @import '$lib/progressbar.css';
+    @import '$lib/progressBar.css';
 </style>
 <script lang="ts">
 	import { gsap } from "gsap";
@@ -11,18 +11,42 @@
 
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+	let distRan = $state("");
+	let distGo = $state("");
 	let test = $state("");
 
+	let progressBarPercent = $state(0);
 
 	async function getDistance() {
         console.log("help");
-        const res = await fetch('/api/airtable');
-        const data = await res.json();
-		test= JSON.stringify(data);
-    }
+        const result = await fetch('/api/airtable');
+        const datatogo = await result.json();
+		distGo = datatogo["distance"] // distance to go
+
+		const resultRun = await fetch('/api/airtable/run');
+		const dataRun = await resultRun.json();
+		let distanceRan = dataRun.totalDistance; // distance ran
+		distRan = distanceRan;
+		progressBarPercent = (Number(distRan) / (Number(distRan) + Number(distGo)) * 100);
+
+		if (progressBarPercent != 0) {
+		var elem = document.getElementById("myBar");
+		var width = 1;
+		var id = setInterval(frame, 15);
+		function frame() {
+		if (width >= progressBarPercent) {
+			clearInterval(id);
+		} else {
+			width++;
+			elem.style.width = width + "%";
+		}
+		}}
+	}
 	onMount(() => {
 		// Register GSAP plugins
 		gsap.registerPlugin(ScrollTrigger);
+
+		getDistance()
 
 		// Setup parallax for cloudy background
 		// const clouds1 = document.querySelector("#clouds-1");
@@ -91,13 +115,14 @@
 
 
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
-	<button class=" border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
-	<div class="container">    
-  <div class="progress progress-moved">
-    <div class="progress-bar" >
-    </div>                       
-  </div> 
-</div>
+	<button class=" hidden border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
+
+	<div id="myProgress" class="h-12">
+		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
+		<p class="absolute left-5 text-4xl text-white">{distRan}km ran</p>
+  		<div id="myBar"></div>
+	</div>
+
 	<div
 		class="bg-[url(/clouds1.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top-0 w-full left-0 -z-10"
 		id="clouds-1"
@@ -144,7 +169,7 @@
 					/>
 				</div>
 				<!-- circle effect for after submission -->
-				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
+				<div class="rounded-full w-30 h-30 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 			</span>
 		</a>
 		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48">
