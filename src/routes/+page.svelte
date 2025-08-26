@@ -14,6 +14,7 @@
 	let distRan = $state("");
 	let distGo = $state("");
 	let test = $state("");
+	let faqs = $state(false);
 
 	let progressBarPercent = $state(0);
 
@@ -116,7 +117,7 @@
 
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
 	<button class=" hidden border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
-
+	<p class="opacity-10 text-4xl absolute top-12 left-5 text-white">Made with &lt;3 by alex and augie</p>
 	<div id="myProgress" class="h-12">
 		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
 		<p class="absolute left-5 text-4xl text-white">{distRan}km ran</p>
@@ -136,19 +137,56 @@
 		id="clouds-2"
 	></div>
 
-	<div class="flex flex-col items-center w-full px-4">
+	{#if faqs}
+	<button class="hover:text-grass-bright z-50 text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 rounded-lg" style="background-color: rgba(255, 255, 255, 0.1)" onclick={() => faqs = !faqs}>Home</button>
+	<div class="text-center text-3xl mt-3 max-w-5xl z-50 p-5 rounded-lg"
+	style="background-color: rgba(0, 0, 0, 0.7)">
+	<h2 class="text-4xl text-grass-bright">What is Touch Grass?</h2>
+	<p class="text-grass">Touch Grass is a Hack Club YSWS where for every hour you spend on a shipped project, we'll run 200m.
+
+	<h2 class="text-4xl text-grass-bright">How can I participate?</h2>
+	<p class="text-grass">You can participate by shipping a project, and submitting it here.</p>
+
+	<h2 class="text-4xl text-grass-bright">Are there any ways for us to make you run more?</h2>
+	<p class="text-grass">Yes! You can make us run more by shipping more projects and encouraging your friends to do that as well.</p>
+
+	<p class="text-grass">You can also try to get on our VIP list.</p>
+
+	<h2 class="text-4xl text-grass-bright">What's so special about the VIP list?</h2>
+	<p class="text-grass">Well, if you're on it, we'll run 400m for every hour you spend on a shipped project.</p>
+
+	<h2 class="text-4xl text-grass-bright">How can I get on the VIP list?</h2>
+	<p class="text-grass">You can get on the VIP list by shipping a project that we think is cool, and that also encourages others to go outside.</p>
+
+	<h2 class="text-4xl text-grass-bright">My question is unanswered, help???</h2>
+	<p class="text-grass">Feel free to ask it in the slack channel <a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a>.</p>
+	</div>
+
+
+	{:else}
+	<button class="hover:text-grass-bright z-50 text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer  px-2 rounded-lg" style="background-color: rgba(255, 255, 255, 0.1)" onclick={() => faqs = !faqs}>FAQs</button>
+	<div class="flex flex-col items-center w-full px-4 z-40">
 		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
 		<p class="text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
 		<p class="text-4xl text-grass leading-7 text-center">
 			<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club Slack
 		</p>
+		<p class="text-3xl text-grass max-w-4xl text-center">
+			for every hour you spend coding<span class="hidden"> on <a href="https://summer.hackclub.com" class=" hover:text-grass-bright underline decoration-2">Summer of Making</a></span>, we'll run 200m
+		</p><p class="text-3xl text-grass max-w-4xl text-center -translate-y-2">
+			<span class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</span>,  and you can make us run double
+		</p>
+
 	</div>
+	{/if}
 
 	<div class="w-full grow-1"></div>
 
+	
 	<!-- bottom content -->
 	<div class="relative w-full flex flex-col">
 		<!-- submit button -->
+		{#if !faqs}
 		<a
 			href="https://submit.hackclub.com/touch-grass"
 			class="translate-y-52 justify-center items-center flex flex-col z-10 group cursor-pointer w-max mx-auto" bind:this={submitButton}
@@ -172,6 +210,7 @@
 				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 			</span>
 		</a>
+		{/if}
 		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48">
 			<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-screen min-w-200 bg-contain bg-bottom bg-no-repeat"></div>
 			<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
