@@ -10,6 +10,8 @@
 	}
 </script>
 
+
+<div class="overflow-hidden">
 {#if !data.isAuthenticated}
 	{@render children?.()}
 {:else}
@@ -32,7 +34,7 @@
 		</div>
 	</div>
 {/if}
-
+</div>
 <style>
 :global(*) {
     image-rendering: pixelated;
