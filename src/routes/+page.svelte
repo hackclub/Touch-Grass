@@ -1,14 +1,52 @@
+<style>
+    @import '$lib/progressBar.css';
+</style>
 <script lang="ts">
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import { ScrollSmoother } from "gsap/ScrollSmoother";
 	import { onMount } from "svelte";
+	import {json} from "@sveltejs/kit";
+
 
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+	let distRan = $state("");
+	let distGo = $state("");
+	let test = $state("");
+
+	let progressBarPercent = $state(0);
+
+	async function getDistance() {
+        console.log("help");
+        const result = await fetch('/api/airtable');
+        const datatogo = await result.json();
+		distGo = datatogo["distance"] // distance to go
+
+		const resultRun = await fetch('/api/airtable/run');
+		const dataRun = await resultRun.json();
+		let distanceRan = dataRun.totalDistance; // distance ran
+		distRan = distanceRan;
+		progressBarPercent = (Number(distRan) / (Number(distRan) + Number(distGo)) * 100);
+
+		if (progressBarPercent != 0) {
+		var elem = document.getElementById("myBar");
+		var width = 1;
+		var id = setInterval(frame, 15);
+		function frame() {
+		if (width >= progressBarPercent) {
+			clearInterval(id);
+		} else {
+			width++;
+			elem.style.width = width + "%";
+		}
+		}}
+	}
 	onMount(() => {
 		// Register GSAP plugins
 		gsap.registerPlugin(ScrollTrigger);
+
+		getDistance()
 
 		// Setup parallax for cloudy background
 		// const clouds1 = document.querySelector("#clouds-1");
@@ -77,7 +115,13 @@
 
 
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
-	<button class="border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={logout}>log out</button>
+	<button class=" hidden border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
+
+	<div id="myProgress" class="h-12">
+		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
+		<p class="absolute left-5 text-4xl text-white">{distRan}km ran</p>
+  		<div id="myBar"></div>
+	</div>
 
 	<div
 		class="bg-[url(/clouds1.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top-0 w-full left-0 -z-10"
@@ -110,7 +154,7 @@
 			class="translate-y-52 justify-center items-center flex flex-col z-10 group cursor-pointer w-max mx-auto" bind:this={submitButton}
 			onclick={submit}
 		>
-			<span class="flex flex-col items-center">
+			<span class="flex flex-col items-center scale-140">
 				<p class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-grass group-hover:text-grass-bright">submit</p>
 				<img
 					src="/hand-top.png"
@@ -128,7 +172,7 @@
 				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 			</span>
 		</a>
-		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48">>
+		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48">
 			<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-screen min-w-200 bg-contain bg-bottom bg-no-repeat"></div>
 			<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
 			<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full h-full min-w-200 bg-contain bg-bottom-right bg-no-repeat max-sm:translate-y-8"></div>
