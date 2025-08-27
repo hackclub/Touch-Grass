@@ -105,7 +105,7 @@
 		setTimeout(() => {
 			submitted = false;
 			submitDiv.dataset.pressed = "false";
-			window.location.href = "https://submit.hackclub.com/touch-grass";
+			// window.location.href = "https://submit.hackclub.com/touch-grass";
 		}, 1750);
 	}
 </script>
@@ -180,44 +180,43 @@
 	</div>
 	{/if}
 
-	<div class="w-full grow-1"></div>
+	<div class="w-full grow-1 min-h-24"></div>
 
 	
-	<!-- bottom content -->
-	<div class="relative w-full flex flex-col">
-		<!-- submit button -->
-		{#if !faqs}
-		<div
-			class="translate-y-52 justify-center items-center flex flex-col z-10 group w-max mx-auto"
-			bind:this={submitDiv}
+	<!-- submit button -->
+	{#if !faqs}
+	<div
+		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32"
+		bind:this={submitDiv}
+	>
+		<a
+			class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-grass group-hover:text-grass-bright cursor-pointer"
+			href="https://submit.hackclub.com/touch-grass"
+			onclick={submit}
 		>
-			<a
-				class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-grass group-hover:text-grass-bright cursor-pointer"
-				href="https://submit.hackclub.com/touch-grass"
-				onclick={submit}
-			>
-				submit
-			</a>
+			submit
+		</a>
+		<div class="w-16 aspect-[18/29] relative">
 			<img
 				src="/hand-top.png"
 				alt=""
-				class="w-16 aspect-[18/22] object-contain"
+				class="absolute left-0 w-16 aspect-[18/22] object-contain"
 			/>
-			<div class="w-16 aspect-[18/29] overflow-hidden">
+			<div class="absolute left-0 top-[calc(100*18%/25)] w-16 aspect-[18/29] overflow-hidden">
 				<img
 					src="/finger.png"
 					alt=""
 					class="w-16 aspect-[18/29] object-contain -translate-y-21/29 group-[:has(a:hover)]:-translate-y-16/29 transition-all group-data-pressed:!translate-none group-data-pressed:duration-500 group-data-pressed:ease-in"
 				/>
 			</div>
-			<!-- circle effect for after submission -->
-			<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 2xl:group-data-pressed:scale-9000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 		</div>
-		{/if}
-		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48 pointer-events-none">
-			<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-screen min-w-200 bg-contain bg-bottom bg-no-repeat"></div>
-			<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
-			<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full h-full min-w-200 bg-contain bg-bottom-right bg-no-repeat max-sm:translate-y-8"></div>
-		</div>
+		<!-- circle effect for after submission -->
+		<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 2xl:group-data-pressed:scale-9000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
+	</div>
+	{/if}
+	<div class="relative w-full min-h-64 xl:min-h-80 max-sm:min-h-48 pointer-events-none">
+		<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-screen min-w-200 bg-contain bg-bottom bg-no-repeat"></div>
+		<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
+		<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full h-full min-w-200 bg-contain bg-bottom-right bg-no-repeat max-sm:translate-y-8"></div>
 	</div>
 </div>
