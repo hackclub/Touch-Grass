@@ -53,14 +53,16 @@
 	onMount(() => {
 		getDistance()
 
-
 		// Register GSAP plugins
-		gsap.registerPlugin(ScrollTrigger);
+		gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-		// ScrollSmoother.create({
-		// 	smooth: 1,
-		// 	smoothTouch: 0.1,
-		// })
+		// Create ScrollSmoother instance
+		ScrollSmoother.create({
+			wrapper: "#smooth-wrapper",
+			content: "#smooth-content",
+			smooth: 1,
+			smoothTouch: 0.1,
+		});
 
 		// parallax for background
 		gsap.to(clouds1, {
@@ -124,6 +126,8 @@
 </script>
 
 
+<div id="smooth-wrapper">
+<div id="smooth-content">
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
 	<button class=" hidden border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
 	<p class="opacity-10 text-4xl absolute top-12 left-5 text-white">Made with &lt;3 by alex and augie</p>
@@ -237,4 +241,6 @@
 		<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
 		<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full h-full min-w-200 bg-contain bg-bottom-right bg-no-repeat max-sm:translate-y-8"></div>
 	</div>
+</div>
+</div>
 </div>
