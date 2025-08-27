@@ -29,3 +29,11 @@
     background-repeat: repeat-y, no-repeat;
 }
 
+.border-monitor {
+    border-image-source: url(/monitor-frame.png);
+    border-image-slice: 5 4 4 4;
+    border-image-width: 20px 16px 16px 16px;
+    border-image-outset: 20px 16px 16px 16px;
+    border-image-repeat: fill;
+    border-style: solid;
+}

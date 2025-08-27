@@ -134,11 +134,11 @@
 	</div>
 
 	<div
-		class="bg-[url(/clouds1.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top-0 w-full left-0 -z-10"
+		class="bg-[url(/clouds1.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top-0 w-full left-0 -z-10 after:absolute after:w-full after:h-full after:bg-sky-2 after:top-full"
 		bind:this={clouds1}
 	></div>
 	<div
-		class="bg-[url(/stars.png)] bg-cover bg-top bg-repeat-y absolute h-screen top-0 w-full left-0 -z-10"
+		class="bg-[url(/stars.png)] bg-contain bg-top bg-repeat-y absolute h-full top-0 w-full left-0 -z-10"
 		bind:this={stars}
 	></div>
 	<div
@@ -189,6 +189,11 @@
 		</p><p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center -translate-y-2 opacity-60">
 			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</button>,  and you can make us run double
 		</p>
+
+		<div class="w-64 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-[9/16] border-monitor mt-12">
+			<!-- svelte-ignore a11y_media_has_caption -->
+			<video src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/bc8128dc324c96a40759759917bf5378a73ef1b4_you_ship_we_suffer.mp4" class="w-full h-full" controls></video>
+		</div>
 
 	</div>
 	{/if}
