@@ -156,7 +156,7 @@
 	<p class="text-grass">Well, if you're on it, we'll run 400m for every hour you spend on a shipped project.</p>
 
 	<h2 class="text-4xl text-grass-bright">How can I get on the VIP list?</h2>
-	<p class="text-grass">You can get on the VIP list by shipping a project that we think is cool, and that also encourages others to go outside.</p>
+	<p class="text-grass">You can get on the VIP list by shipping a project that we think is cool!</p>
 
 	<h2 class="text-4xl text-grass-bright">My question is unanswered, help???</h2>
 	<p class="text-grass">Feel free to ask it in the slack channel <a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a>.</p>
