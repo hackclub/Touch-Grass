@@ -142,7 +142,7 @@
 		bind:this={stars}
 	></div>
 	<div
-		class="bg-[url(/clouds2.png)] bg-cover bg-bottom bg-no-repeat absolute h-[90%] w-full left-0 -z-10"
+		class="bg-[url(/clouds2.png)] bg-cover bg-bottom bg-no-repeat absolute h-[90%] w-full left-0 -z-10 after:absolute after:w-full after:h-full after:bg-white after:top-full"
 		bind:this={clouds2}
 	></div>
 
