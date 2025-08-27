@@ -21,7 +21,6 @@
 	let progressBar: HTMLDivElement;
 
 	async function getDistance() {
-        console.log("help");
         const result = await fetch('/api/airtable');
         const datatogo = await result.json();
 		distGo = datatogo["distance"] // distance to go
@@ -33,63 +32,77 @@
 		progressBarPercent = (Number(distRan) / (Number(distRan) + Number(distGo)) * 100);
 
 		if (progressBarPercent != 0) {
-		var width = 1;
-		var id = setInterval(frame, 15);
-		function frame() {
-		if (width >= progressBarPercent) {
-			clearInterval(id);
-		} else {
-			width++;
-			progressBar.style.width = width + "%";
+			var width = 1;
+			var id = setInterval(frame, 15);
+			function frame() {
+				if (width >= progressBarPercent) {
+					clearInterval(id);
+				} else {
+					width++;
+					progressBar.style.width = width + "%";
+				}
+			}
 		}
-		}}
 	}
+
+	let clouds1: HTMLDivElement;
+	let stars: HTMLDivElement;
+	let clouds2: HTMLDivElement;
+	let trees: HTMLDivElement;
+
 	onMount(() => {
+		getDistance()
+
+
 		// Register GSAP plugins
 		gsap.registerPlugin(ScrollTrigger);
 
-		getDistance()
+		// ScrollSmoother.create({
+		// 	smooth: 1,
+		// 	smoothTouch: 0.1,
+		// })
 
-		// Setup parallax for cloudy background
-		// const clouds1 = document.querySelector("#clouds-1");
-		// if (clouds1) {
-		// 	gsap.to(clouds1, {
-		// 		yPercent: 5,
-		// 		ease: "power2.inOut",
-		// 		scrollTrigger: {
-		// 			trigger: clouds1,
-		// 			start: "bottom bottom",
-		// 			end: "bottom top",
-		// 			scrub: true,
-		// 		},
-		// 	});
-		// }
-		// const stars = document.querySelector("#stars");
-		// if (stars) {
-		// 	gsap.to(stars, {
-		// 		yPercent: -10,
-		// 		ease: "none",
-		// 		scrollTrigger: {
-		// 			trigger: clouds1,
-		// 			start: "bottom bottom",
-		// 			end: "bottom top",
-		// 			scrub: true,
-		// 		},
-		// 	});
-		// }
-		// const clouds2 = document.querySelector("#clouds-2");
-		// if (clouds2) {
-		// 	gsap.to(clouds2, {
-		// 		yPercent: -40,
-		// 		ease: "none",
-		// 		scrollTrigger: {
-		// 			trigger: clouds1,
-		// 			start: "bottom bottom",
-		// 			end: "bottom top",
-		// 			scrub: true,
-		// 		},
-		// 	});
-		// }
+		// parallax for background
+		gsap.to(clouds1, {
+			yPercent: 40,
+			ease: "none",
+			scrollTrigger: {
+				trigger: clouds1,
+				start: "top top",
+				end: "bottom top",
+				scrub: true,
+			},
+		});
+		gsap.to(stars, {
+			yPercent: 10,
+			ease: "none",
+			scrollTrigger: {
+				trigger: stars,
+				start: "top top",
+				end: "bottom top",
+				scrub: true,
+			},
+		});
+		gsap.to(clouds2, {
+			yPercent: 40,
+			ease: "none",
+			scrollTrigger: {
+				trigger: clouds2,
+				start: "top top",
+				end: "bottom top",
+				scrub: true,
+			},
+		});
+		gsap.to(trees, {
+			yPercent: 20,
+			ease: "none",
+			scrollTrigger: {
+				trigger: trees,
+				start: "top bottom",
+				end: "bottom top",
+				scrub: true,
+			},
+		});
 	});
 
 	let submitDiv: HTMLDivElement;
@@ -105,7 +118,7 @@
 		setTimeout(() => {
 			submitted = false;
 			submitDiv.dataset.pressed = "false";
-			// window.location.href = "https://submit.hackclub.com/touch-grass";
+			window.location.href = "https://submit.hackclub.com/touch-grass";
 		}, 1750);
 	}
 </script>
@@ -122,15 +135,15 @@
 
 	<div
 		class="bg-[url(/clouds1.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top-0 w-full left-0 -z-10"
-		id="clouds-1"
+		bind:this={clouds1}
 	></div>
 	<div
 		class="bg-[url(/stars.png)] bg-cover bg-top bg-repeat-y absolute h-screen top-0 w-full left-0 -z-10"
-		id="stars"
+		bind:this={stars}
 	></div>
 	<div
-		class="bg-[url(/clouds2.png)] bg-cover bg-bottom bg-no-repeat absolute h-screen top w-full left-0 -z-10"
-		id="clouds-2"
+		class="bg-[url(/clouds2.png)] bg-cover bg-bottom bg-no-repeat absolute h-[90%] w-full left-0 -z-10"
+		bind:this={clouds2}
 	></div>
 
 	{#if faqs}
@@ -164,16 +177,16 @@
 
 
 	{:else}
-	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer  px-2 rounded-lg" style="background-color: rgba(255, 255, 255, 0.1)" onclick={() => faqs = !faqs}>FAQs</button>
+	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={() => faqs = !faqs}>FAQs</button>
 	<div class="flex flex-col items-center w-full px-4">
 		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
-		<p class="text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
-		<p class="text-4xl text-grass leading-7 text-center">
+		<p class="text-3xl 2xl:text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
+		<p class="text-3xl 2xl:text-4xl text-grass leading-7 text-center">
 			<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club Slack
 		</p>
-		<p class="text-3xl text-grass max-w-4xl text-center">
+		<p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center pt-8">
 			for every hour you spend coding<span class="hidden"> on <a href="https://summer.hackclub.com" class=" hover:text-grass-bright underline decoration-2">Summer of Making</a></span>, we'll run 200m
-		</p><p class="text-3xl text-grass max-w-4xl text-center -translate-y-2">
+		</p><p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center -translate-y-2 opacity-60">
 			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</button>,  and you can make us run double
 		</p>
 
@@ -215,7 +228,7 @@
 	</div>
 	{/if}
 	<div class="relative w-full min-h-64 xl:min-h-80 max-sm:min-h-48 pointer-events-none">
-		<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-screen min-w-200 bg-contain bg-bottom bg-no-repeat"></div>
+		<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-screen min-w-200 bg-contain bg-bottom bg-no-repeat -translate-y-32 2xl:-translate-y-24" bind:this={trees}></div>
 		<div class="absolute bottom-0 left-0 bg-[url(/grass1.png)] w-full h-full min-w-200 bg-contain bg-bottom-left bg-no-repeat max-sm:-translate-x-12"></div>
 		<div class="absolute bottom-0 right-0 bg-[url(/grass2.png)] w-full h-full min-w-200 bg-contain bg-bottom-right bg-no-repeat max-sm:translate-y-8"></div>
 	</div>
