@@ -12,7 +12,7 @@
 
 
 <div class="overflow-hidden">
-{#if !data.isAuthenticated}
+{#if true}
 	{@render children?.()}
 {:else}
 	<div
