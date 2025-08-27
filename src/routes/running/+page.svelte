@@ -1,8 +1,10 @@
-<script>
-    // this vibecode just works ---- So let's just leave it --
+<script lang="ts">
+  //@ts-nocheck
+  // this vibecode just works ---- So let's just leave it --
   import { onMount } from 'svelte';
   
-  let embedContainer;
+  
+  let embedContainer: HTMLDivElement;
   
   onMount(() => {
     // Clear any existing embeds first

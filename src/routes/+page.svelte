@@ -1,6 +1,7 @@
 <style>
     @import '$lib/progressbar.css';
 </style>
+<!-- svelte-ignore non_reactive_update -->
 <script lang="ts">
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,12 +12,13 @@
 
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-	let distRan = $state("");
-	let distGo = $state("");
+	let distRan = $state(0);
+	let distGo = $state(0);
 	let test = $state("");
 	let faqs = $state(false);
 
 	let progressBarPercent = $state(0);
+	let progressBar: HTMLDivElement;
 
 	async function getDistance() {
         console.log("help");
@@ -31,7 +33,6 @@
 		progressBarPercent = (Number(distRan) / (Number(distRan) + Number(distGo)) * 100);
 
 		if (progressBarPercent != 0) {
-		var elem = document.getElementById("myBar");
 		var width = 1;
 		var id = setInterval(frame, 15);
 		function frame() {
@@ -39,7 +40,7 @@
 			clearInterval(id);
 		} else {
 			width++;
-			elem.style.width = width + "%";
+			progressBar.style.width = width + "%";
 		}
 		}}
 	}
@@ -121,7 +122,7 @@
 	<div id="myProgress" class="h-12">
 		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
 		<p class="absolute left-5 text-4xl text-white">{distRan}km ran</p>
-  		<div id="myBar"></div>
+  		<div id="myBar" bind:this={progressBar}></div>
 	</div>
 
 	<div
@@ -142,7 +143,7 @@
 	<div class="text-center text-3xl mt-3 max-w-5xl z-50 p-5 rounded-lg"
 	style="background-color: rgba(0, 0, 0, 0.7)">
 	<h2 class="text-4xl text-grass-bright">What is Touch Grass?</h2>
-	<p class="text-grass">Touch Grass is a Hack Club YSWS where for every hour you spend on a shipped project, we'll run 200m.
+	<p class="text-grass">Touch Grass is a Hack Club YSWS where for every hour you spend on a shipped project, we'll run 200m.</p>
 
 	<h2 class="text-4xl text-grass-bright">How can I participate?</h2>
 	<p class="text-grass">You can participate by shipping a project, and submitting it here.</p>
@@ -178,7 +179,7 @@
 		<p class="text-3xl text-grass max-w-4xl text-center">
 			for every hour you spend coding<span class="hidden"> on <a href="https://summer.hackclub.com" class=" hover:text-grass-bright underline decoration-2">Summer of Making</a></span>, we'll run 200m
 		</p><p class="text-3xl text-grass max-w-4xl text-center -translate-y-2">
-			<span class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</span>,  and you can make us run double
+			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</button>,  and you can make us run double
 		</p>
 
 	</div>
