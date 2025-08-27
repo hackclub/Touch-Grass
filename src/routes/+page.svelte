@@ -142,7 +142,7 @@
 		bind:this={clouds1}
 	></div>
 	<div
-		class="bg-[url(/stars.png)] bg-contain bg-top bg-repeat-y absolute h-full top-0 w-full left-0 -z-10"
+		class="bg-[url(/stars.png)] bg-size-[175vh_auto] bg-top bg-repeat absolute h-full top-0 w-full left-0 -z-10"
 		bind:this={stars}
 	></div>
 	<div
