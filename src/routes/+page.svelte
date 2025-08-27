@@ -92,7 +92,7 @@
 		// }
 	});
 
-	let submitButton: HTMLAnchorElement;
+	let submitDiv: HTMLDivElement;
 	let submitted = false;
 	function submit(e: MouseEvent) {
 		e.preventDefault();
@@ -100,18 +100,13 @@
 		if (submitted) return;
 		submitted = true;
 
-		submitButton.dataset.pressed = "true";
+		submitDiv.dataset.pressed = "true";
 
 		setTimeout(() => {
 			submitted = false;
-			submitButton.dataset.pressed = "false";
+			submitDiv.dataset.pressed = "false";
 			window.location.href = "https://submit.hackclub.com/touch-grass";
 		}, 1750);
-	}
-
-	function logout() {
-		document.cookie = `auth=; path=/; max-age=0;`;
-		window.location.reload();
 	}
 </script>
 
@@ -169,8 +164,8 @@
 
 
 	{:else}
-	<button class="hover:text-grass-bright z-50 text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer  px-2 rounded-lg" style="background-color: rgba(255, 255, 255, 0.1)" onclick={() => faqs = !faqs}>FAQs</button>
-	<div class="flex flex-col items-center w-full px-4 z-40">
+	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer  px-2 rounded-lg" style="background-color: rgba(255, 255, 255, 0.1)" onclick={() => faqs = !faqs}>FAQs</button>
+	<div class="flex flex-col items-center w-full px-4">
 		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
 		<p class="text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
 		<p class="text-4xl text-grass leading-7 text-center">
@@ -192,29 +187,32 @@
 	<div class="relative w-full flex flex-col">
 		<!-- submit button -->
 		{#if !faqs}
-		<a
-			href="https://submit.hackclub.com/touch-grass"
-			class="translate-y-52 justify-center items-center flex flex-col z-10 group cursor-pointer w-max mx-auto" bind:this={submitButton}
-			onclick={submit}
+		<div
+			class="translate-y-52 justify-center items-center flex flex-col z-10 group w-max mx-auto"
+			bind:this={submitDiv}
 		>
-			<span class="flex flex-col items-center scale-140">
-				<p class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-grass group-hover:text-grass-bright">submit</p>
+			<a
+				class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-grass group-hover:text-grass-bright cursor-pointer"
+				href="https://submit.hackclub.com/touch-grass"
+				onclick={submit}
+			>
+				submit
+			</a>
+			<img
+				src="/hand-top.png"
+				alt=""
+				class="w-16 aspect-[18/22] object-contain"
+			/>
+			<div class="w-16 aspect-[18/29] overflow-hidden">
 				<img
-					src="/hand-top.png"
+					src="/finger.png"
 					alt=""
-					class="w-16 aspect-[18/22] object-contain"
+					class="w-16 aspect-[18/29] object-contain -translate-y-21/29 group-[:has(a:hover)]:-translate-y-16/29 transition-all group-data-pressed:!translate-none group-data-pressed:duration-500 group-data-pressed:ease-in"
 				/>
-				<div class="w-16 aspect-[18/29] overflow-hidden">
-					<img
-						src="/finger.png"
-						alt=""
-						class="w-16 aspect-[18/29] object-contain -translate-y-21/29 group-hover:-translate-y-16/29 transition-all group-data-pressed:translate-none group-data-pressed:duration-500 group-data-pressed:ease-in"
-					/>
-				</div>
-				<!-- circle effect for after submission -->
-				<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
-			</span>
-		</a>
+			</div>
+			<!-- circle effect for after submission -->
+			<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 2xl:group-data-pressed:scale-9000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
+		</div>
 		{/if}
 		<div class="relative min-h-64 xl:min-h-80 max-sm:min-h-48 pointer-events-none">
 			<div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[url(/trees.png)] w-full h-screen min-w-200 bg-contain bg-bottom bg-no-repeat"></div>
