@@ -133,7 +133,7 @@
 	<p class="opacity-10 text-4xl absolute top-12 left-5 text-white">Made with &lt;3 by alex and augie</p>
 	<div id="myProgress" class="h-12">
 		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
-		<p class="absolute left-5 text-4xl text-white">{Math.round(100*distRan)/100}km ran</p>
+		<p class="absolute left-5 text-4xl text-white">{Math.round(100.0*distRan)/100.0}km ran</p>
   		<div id="myBar" bind:this={progressBar}></div>
 	</div>
 
