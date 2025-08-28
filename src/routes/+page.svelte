@@ -83,11 +83,22 @@
                 new Twitch.Embed('twitch-embed', {
                     width: 854,
                     height: 480,
-                    channel: 'your_twitch_channel_name', // Replace with your channel
-                    parent: ['your_website_domain.com'] // Replace with your domain(s)
+                    channel: 'hackclubruns', // Replace with your channel
+                    parent: ['touch-grass.hackclub.com'] // Replace with your domain(s)
                 });
             };
             document.body.appendChild(script);
+
+		//const scriptStrava = document.createElement('script');
+          //  scriptStrava.src = 'https://embed.strava.com/embed/v1.js';
+          //      new Strava.Embed('strava-embed', {
+          //          width: 854,
+          //          height: 480,
+         //           channel: 'hackclubruns', // Replace with your channel
+        //            parent: ['touch-grass.hackclub.com'] // Replace with your domain(s)
+        //        });
+        //    };
+        //    document.body.appendChild(scriptStrava);
 
 			
 		// Register GSAP plugins
@@ -222,7 +233,7 @@
 
 	{:else if pageState === "twitch"}
 	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={() => pageState = "faqs"}>FAQs</button>
-	<button class="hover:text-grass-bright text-grass underline decoration-2 right-15 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={getCards}>FAQs</button>
+	<button class="hover:text-grass-bright hidden text-grass underline decoration-2 right-15 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={getCards}>FAQs</button>
 	<div class="flex flex-col items-center w-full px-4">
 		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
 		<p class="text-3xl 2xl:text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
@@ -235,14 +246,14 @@
 			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => pageState = "faqs"}>become a VIP</button>,  and you can make us run double
 		</p>
 
-		<div class="w-64 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-[9/16] border-monitor mt-12">
+		<div class="w-214 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-[16/9] border-monitor mt-12">
 			<div id="twitch-embed"></div>	</div>
 
 	</div>
 	
 	{:else}
 	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={() => pageState = "faqs"}>FAQs</button>
-	<button class="hover:text-grass-bright text-grass underline decoration-2 right-15 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={getCards}>FAQs</button>
+	<button class="hover:text-grass-bright hidden text-grass underline decoration-2 right-15 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={getCards}>FAQs</button>
 	<div class="flex flex-col items-center w-full px-4">
 		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
 		<p class="text-3xl 2xl:text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
