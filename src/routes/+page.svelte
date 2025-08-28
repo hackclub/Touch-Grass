@@ -18,7 +18,7 @@
 	let distRan = $state(0);
 	let distGo = $state(0);
 	let test = $state("");
-	let pageState = $state("home");
+	let pageState = $state("twitch");
 	let cardDisplay = $state("");
 
 	let progressBarPercent = $state(0);
@@ -77,6 +77,19 @@
 		getDistance();
 		runEmbed();
 
+		const script = document.createElement('script');
+            script.src = 'https://embed.twitch.tv/embed/v1.js';
+            script.onload = () => {
+                new Twitch.Embed('twitch-embed', {
+                    width: 854,
+                    height: 480,
+                    channel: 'your_twitch_channel_name', // Replace with your channel
+                    parent: ['your_website_domain.com'] // Replace with your domain(s)
+                });
+            };
+            document.body.appendChild(script);
+
+			
 		// Register GSAP plugins
 		gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -207,6 +220,26 @@
 
 	{@html cardDisplay}
 
+	{:else if pageState === "twitch"}
+	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={() => pageState = "faqs"}>FAQs</button>
+	<button class="hover:text-grass-bright text-grass underline decoration-2 right-15 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={getCards}>FAQs</button>
+	<div class="flex flex-col items-center w-full px-4">
+		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
+		<p class="text-3xl 2xl:text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
+		<p class="text-3xl 2xl:text-4xl text-grass leading-7 text-center">
+			<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club Slack
+		</p>
+		<p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center pt-8">
+			for every hour you spend coding<span class="hidden"> on <a href="https://summer.hackclub.com" class=" hover:text-grass-bright underline decoration-2">Summer of Making</a></span>, we'll run 200m
+		</p><p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center -translate-y-2 opacity-60">
+			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => pageState = "faqs"}>become a VIP</button>,  and you can make us run double
+		</p>
+
+		<div class="w-64 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-[9/16] border-monitor mt-12">
+			<div id="twitch-embed"></div>	</div>
+
+	</div>
+	
 	{:else}
 	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={() => pageState = "faqs"}>FAQs</button>
 	<button class="hover:text-grass-bright text-grass underline decoration-2 right-15 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={getCards}>FAQs</button>
@@ -234,7 +267,7 @@
 
 	
 	<!-- submit button -->
-	{#if pageState === "home"}
+	{#if pageState === "home" || pageState === "twitch"}
 	<div
 		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32"
 		bind:this={submitDiv}
