@@ -32,16 +32,7 @@
 		progressBarPercent = (Number(distRan) / (Number(distRan) + Number(distGo)) * 100);
 
 		if (progressBarPercent != 0) {
-			var width = 1;
-			var id = setInterval(frame, 15);
-			function frame() {
-				if (width >= progressBarPercent) {
-					clearInterval(id);
-				} else {
-					width++;
-					progressBar.style.width = width + "%";
-				}
-			}
+			progressBar.style.width = progressBarPercent + "%";
 		}
 	}
 
@@ -134,7 +125,7 @@
 	<div id="myProgress" class="h-12">
 		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
 		<p class="absolute left-5 text-4xl text-white">{Math.round(100.0*distRan)/100.0}km ran</p>
-  		<div id="myBar" bind:this={progressBar}></div>
+  		<div id="myBar" bind:this={progressBar} class="transition-all duration-500"></div>
 	</div>
 
 	<div
