@@ -199,7 +199,7 @@
 	<!-- submit button -->
 	{#if !faqs}
 	<div
-		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32"
+		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32 animate-[bounce_2s_ease-in-out_infinite"
 		bind:this={submitDiv}
 	>
 		<a
