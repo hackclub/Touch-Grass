@@ -3,15 +3,12 @@
 </style>
 <!-- svelte-ignore non_reactive_update -->
 <script lang="ts">
-	
 	import { gsap } from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import { ScrollSmoother } from "gsap/ScrollSmoother";
 	import { onMount } from "svelte";
 	import {json} from "@sveltejs/kit";
-    import { page } from "$app/state";
-	import {runEmbed} from "$lib/embed.js";
-	
+
 
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -20,6 +17,7 @@
 	let test = $state("");
 	let pageState = $state("home");
 	let cardDisplay = $state("");
+
 
 	let progressBarPercent = $state(0);
 	let progressBar: HTMLDivElement;
@@ -61,11 +59,6 @@
 			cardDisplay += ` data-embed-id="${cardsList[i].url}" `;
 			cardDisplay += ` data-style="standard"></div>`;
 		}
-	}
-
-	function returnHome(){
-		pageState = "home";
-		cardDisplay = "";
 	}
 
 	let clouds1: HTMLDivElement;
@@ -199,8 +192,8 @@
 		bind:this={clouds2}
 	></div>
 
-	{#if pageState === "faqs"}
-	<button class="hover:text-grass-bright z-50 text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 rounded-lg" style="background-color: rgba(255, 255, 255, 0.1)" onclick={() => pageState = "home"}>Home</button>
+	{#if faqs}
+	<button class="hover:text-grass-bright z-50 text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 rounded-lg" style="background-color: rgba(255, 255, 255, 0.1)" onclick={() => faqs = !faqs}>Home</button>
 	<div class="text-center text-3xl mt-3 max-w-5xl z-50 p-5 rounded-lg"
 	style="background-color: rgba(0, 0, 0, 0.7)">
 	<h2 class="text-4xl text-grass-bright">What is Touch Grass?</h2>
@@ -228,33 +221,9 @@
 	<p class="text-grass">Feel free to ask it in the slack channel <a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a>.</p>
 	</div>
 
-	{:else if pageState === "activities"}
 
-	{@html cardDisplay}
-
-	{:else if pageState === "twitch"}
-	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={() => pageState = "faqs"}>FAQs</button>
-	<button class="hover:text-grass-bright hidden text-grass underline decoration-2 right-15 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={getCards}>FAQs</button>
-	<div class="flex flex-col items-center w-full px-4">
-		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
-		<p class="text-3xl 2xl:text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
-		<p class="text-3xl 2xl:text-4xl text-grass leading-7 text-center">
-			<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club Slack
-		</p>
-		<p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center pt-8">
-			for every hour you spend coding<span class="hidden"> on <a href="https://summer.hackclub.com" class=" hover:text-grass-bright underline decoration-2">Summer of Making</a></span>, we'll run 200m
-		</p><p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center -translate-y-2 opacity-60">
-			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => pageState = "faqs"}>become a VIP</button>,  and you can make us run double
-		</p>
-
-		<div class="w-214 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-[16/9] border-monitor mt-12">
-			<div id="twitch-embed"></div>	</div>
-
-	</div>
-	
 	{:else}
-	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={() => pageState = "faqs"}>FAQs</button>
-	<button class="hover:text-grass-bright hidden text-grass underline decoration-2 right-15 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={getCards}>FAQs</button>
+	<button class="hover:text-grass-bright text-grass underline decoration-2 right-5 absolute top-15 text-4xl hover:cursor-pointer px-2 max-sm:mt-6 opacity-80" onclick={() => faqs = !faqs}>FAQs</button>
 	<div class="flex flex-col items-center w-full px-4">
 		<img src="/logo.png" alt="Touch Grass" class="h-[1em] text-7xl object-contain mt-32 mb-4 select-none" draggable="false">
 		<p class="text-3xl 2xl:text-4xl text-grass-bright leading-7 text-center mb-1">you ship we suffer</p>
@@ -264,7 +233,7 @@
 		<p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center pt-8">
 			for every hour you spend coding<span class="hidden"> on <a href="https://summer.hackclub.com" class=" hover:text-grass-bright underline decoration-2">Summer of Making</a></span>, we'll run 200m
 		</p><p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center -translate-y-2 opacity-60">
-			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => pageState = "faqs"}>become a VIP</button>,  and you can make us run double
+			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</button>,  and you can make us run double
 		</p>
 
 		<div class="w-64 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-[9/16] border-monitor mt-12">
@@ -279,7 +248,7 @@
 
 	
 	<!-- submit button -->
-	{#if pageState === "home" || pageState === "twitch"}
+	{#if !faqs}
 	<div
 		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32 animate-[bounce_2s_ease-in-out_infinite]"
 		bind:this={submitDiv}
