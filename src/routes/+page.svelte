@@ -15,9 +15,7 @@
 	let distRan = $state(0);
 	let distGo = $state(0);
 	let test = $state("");
-	let pageState = $state("home");
-	let cardDisplay = $state("");
-
+	let faqs = $state(false);
 
 	let progressBarPercent = $state(0);
 	let progressBar: HTMLDivElement;
@@ -31,33 +29,10 @@
 		const dataRun = await resultRun.json();
 		let distanceRan = dataRun.totalDistance; // distance ran
 		distRan = distanceRan;
-		progressBarPercent = (Number(distRan) / ((Number(distRan) + Number(distGo))) * 100);
+		progressBarPercent = (Number(distRan) / (Number(distRan) + Number(distGo)) * 100);
 
 		if (progressBarPercent != 0) {
-			var width = 1;
-			//var id = setInterval(frame, 15);
-			//function frame() {
-			//	if (width >= progressBarPercent) {
-				//	clearInterval(id);
-				//} else {
-				//	width++;
-					progressBar.style.width = progressBarPercent + "%";
-			//	}
-			//}
-		}
-	}
-
-	async function getCards() {
-		pageState = "activities";
-		const result = await fetch('/api/airtable/run');
-		const data = await result.json();
-		let cardsList = data.activityList;
-		cardDisplay = "";
-
-		for (let i = cardsList.length - 1; i >= 0; i--) {
-			cardDisplay += `<div class="strava-embed-placeholder" data-embed-type="activity"`;
-			cardDisplay += ` data-embed-id="${cardsList[i].url}" `;
-			cardDisplay += ` data-style="standard"></div>`;
+			progressBar.style.width = progressBarPercent + "%";
 		}
 	}
 
@@ -67,34 +42,8 @@
 	let trees: HTMLDivElement;
 
 	onMount(() => {
-		getDistance();
-		runEmbed();
+		getDistance()
 
-		try {const script = document.createElement('script');
-            script.src = 'https://embed.twitch.tv/embed/v1.js';
-            script.onload = () => {
-                new Twitch.Embed('twitch-embed', {
-                    width: 854,
-                    height: 480,
-                    channel: 'hackclubruns', // Replace with your channel
-                    parent: ['touch-grass.hackclub.com'] // Replace with your domain(s)
-                });
-            };
-            document.body.appendChild(script);
-		} catch {
-		}
-		//const scriptStrava = document.createElement('script');
-          //  scriptStrava.src = 'https://embed.strava.com/embed/v1.js';
-          //      new Strava.Embed('strava-embed', {
-          //          width: 854,
-          //          height: 480,
-         //           channel: 'hackclubruns', // Replace with your channel
-        //            parent: ['touch-grass.hackclub.com'] // Replace with your domain(s)
-        //        });
-        //    };
-        //    document.body.appendChild(scriptStrava);
-
-			
 		// Register GSAP plugins
 		gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -174,9 +123,9 @@
 	<button class=" hidden border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
 	<p class="opacity-10 text-4xl absolute top-12 left-5 text-white">Made with &lt;3 by alex and augie</p>
 	<div id="myProgress" class="h-12">
-		<p class="absolute right-5 text-4xl text-white">{Math.round(100.0*(distGo-distRan))/100.0}km to go</p>
+		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
 		<p class="absolute left-5 text-4xl text-white">{Math.round(100.0*distRan)/100.0}km ran</p>
-  		<div id="myBar" bind:this={progressBar} class="transition-all duration-1000"></div>
+  		<div id="myBar" bind:this={progressBar} class="transition-all duration-500"></div>
 	</div>
 
 	<div
@@ -250,7 +199,7 @@
 	<!-- submit button -->
 	{#if !faqs}
 	<div
-		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32 animate-[bounce_2s_ease-in-out_infinite]"
+		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32 animate-[bounce_2s_ease-in-out_infinite"
 		bind:this={submitDiv}
 	>
 		<a
