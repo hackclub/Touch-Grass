@@ -18,7 +18,7 @@
 	let distRan = $state(0);
 	let distGo = $state(0);
 	let test = $state("");
-	let pageState = $state("twitch");
+	let pageState = $state("home");
 	let cardDisplay = $state("");
 
 	let progressBarPercent = $state(0);
@@ -33,19 +33,19 @@
 		const dataRun = await resultRun.json();
 		let distanceRan = dataRun.totalDistance; // distance ran
 		distRan = distanceRan;
-		progressBarPercent = (Number(distRan) / (Number(distRan) + Number(distGo)) * 100);
+		progressBarPercent = (Number(distRan) / ((Number(distRan) + Number(distGo))) * 100);
 
 		if (progressBarPercent != 0) {
 			var width = 1;
-			var id = setInterval(frame, 15);
-			function frame() {
-				if (width >= progressBarPercent) {
-					clearInterval(id);
-				} else {
-					width++;
-					progressBar.style.width = width + "%";
-				}
-			}
+			//var id = setInterval(frame, 15);
+			//function frame() {
+			//	if (width >= progressBarPercent) {
+				//	clearInterval(id);
+				//} else {
+				//	width++;
+					progressBar.style.width = progressBarPercent + "%";
+			//	}
+			//}
 		}
 	}
 
@@ -77,7 +77,7 @@
 		getDistance();
 		runEmbed();
 
-		const script = document.createElement('script');
+		try {const script = document.createElement('script');
             script.src = 'https://embed.twitch.tv/embed/v1.js';
             script.onload = () => {
                 new Twitch.Embed('twitch-embed', {
@@ -88,7 +88,8 @@
                 });
             };
             document.body.appendChild(script);
-
+		} catch {
+		}
 		//const scriptStrava = document.createElement('script');
           //  scriptStrava.src = 'https://embed.strava.com/embed/v1.js';
           //      new Strava.Embed('strava-embed', {
@@ -180,9 +181,9 @@
 	<button class=" hidden border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
 	<p class="opacity-10 text-4xl absolute top-12 left-5 text-white">Made with &lt;3 by alex and augie</p>
 	<div id="myProgress" class="h-12">
-		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
-		<p class="absolute left-5 text-4xl text-white">{distRan}km ran</p>
-  		<div id="myBar" bind:this={progressBar}></div>
+		<p class="absolute right-5 text-4xl text-white">{Math.round(100.0*(distGo-distRan))/100.0}km to go</p>
+		<p class="absolute left-5 text-4xl text-white">{Math.round(100.0*distRan)/100.0}km ran</p>
+  		<div id="myBar" bind:this={progressBar} class="transition-all duration-1000"></div>
 	</div>
 
 	<div
@@ -280,7 +281,7 @@
 	<!-- submit button -->
 	{#if pageState === "home" || pageState === "twitch"}
 	<div
-		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32"
+		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32 animate-[bounce_2s_ease-in-out_infinite]"
 		bind:this={submitDiv}
 	>
 		<a
