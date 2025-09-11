@@ -23,15 +23,15 @@
 	async function getDistance() {
         const result = await fetch('/api/airtable');
         const datatogo = await result.json();
-		distGo = datatogo["distance"] // distance to go
+		distGo = datatogo["distance"] // total target distance
 
 		const resultRun = await fetch('/api/airtable/run');
 		const dataRun = await resultRun.json();
 		let distanceRan = dataRun.totalDistance; // distance ran
 		distRan = distanceRan;
-		progressBarPercent = (Number(distRan) / (Number(distRan) + Number(distGo)) * 100);
+		progressBarPercent = (Number(distRan) / Number(distGo)) * 100;
 
-		if (progressBarPercent != 0) {
+		if (progressBarPercent > 0) {
 			progressBar.style.width = progressBarPercent + "%";
 		}
 	}
@@ -122,9 +122,9 @@
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
 	<button class=" hidden border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
 	<p class="opacity-10 text-4xl absolute top-12 left-5 text-white">Made with &lt;3 by alex and augie</p>
-	<div id="myProgress" class="h-12">
-		<p class="absolute right-5 text-4xl text-white">{Math.round(100*(distGo-distRan))/100}km to go</p>
-		<p class="absolute left-5 text-4xl text-white">{Math.round(100.0*distRan)/100.0}km ran</p>
+	<div id="myProgress" class="w-full absolute top-0 left-0 z-10">
+		<p class="absolute right-5 text-4xl text-white top-0">{Math.round(100*(distGo-distRan))/100}km to go</p>
+		<p class="absolute left-5 text-4xl text-white top-0">{Math.round(100.0*distRan)/100.0}km ran</p>
   		<div id="myBar" bind:this={progressBar} class="transition-all duration-500"></div>
 	</div>
 
