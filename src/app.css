@@ -28,6 +28,14 @@
     background-size: 100% calc(var(--scanlines-size) * 2), 100% 100%;
     background-repeat: repeat-y, no-repeat;
 }
+.bg-scanlines-dark {
+    --scanlines-size: 4px;
+    background-image:
+        linear-gradient(to bottom, #374040 var(--scanlines-size), transparent var(--scanlines-size)),
+        linear-gradient(#3c4646, #3c4646);
+    background-size: 100% calc(var(--scanlines-size) * 2), 100% 100%;
+    background-repeat: repeat-y, no-repeat;
+}
 
 .border-monitor {
     border-image-source: url(/monitor-frame.png);

@@ -101,6 +101,7 @@
 	let submitDiv: HTMLDivElement;
 	let submitted = false;
 	function submit(e: MouseEvent) {
+		return;
 		e.preventDefault();
 
 		if (submitted) return;
@@ -180,9 +181,9 @@
 			<a href="https://hackclub.slack.com/archives/C09BQMHB724" class="hover:text-grass-bright underline decoration-2">#touch-grass</a> in the Hack Club Slack
 		</p>
 		<p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center pt-8">
-			for every hour you spend coding<span class="hidden"> on <a href="https://summer.hackclub.com" class=" hover:text-grass-bright underline decoration-2">Summer of Making</a></span>, we'll run 200m
+			for every hour you spent coding<span class="hidden"> on <a href="https://summer.hackclub.com" class=" hover:text-grass-bright underline decoration-2">Summer of Making</a></span>, we ran 200m
 		</p><p class="text-3xl 2xl:text-4xl text-grass max-w-4xl text-center -translate-y-2 opacity-60">
-			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</button>,  and you can make us run double
+			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</button>,  and you could make us run double
 		</p>
 
 		<div class="w-64 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-[9/16] border-monitor mt-12">
@@ -199,17 +200,16 @@
 	<!-- submit button -->
 	{#if !faqs}
 	<div
-		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32 animate-[bounce_2s_ease-in-out_infinite]"
+		class="justify-center items-center flex flex-col z-10 group w-max mx-auto -mb-32"
 		bind:this={submitDiv}
 	>
-		<a
-			class="bg-scanlines text-grass text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-grass group-hover:text-grass-bright cursor-pointer"
-			href="https://submit.hackclub.com/touch-grass"
+		<button
+			class="bg-scanlines-dark text-[#dbeae9] text-4xl px-4 pt-1 pb-2 min-w-36 text-center border-3 border-[#dbeae9] group-hover:text-[#d5e7e5] cursor-not-allowed"
 			onclick={submit}
 		>
-			submit
-		</a>
-		<div class="w-16 aspect-[18/29] relative">
+			touch grass has ended :(
+		</button>
+		<!-- <div class="w-16 aspect-[18/29] relative">
 			<img
 				src="/hand-top.png"
 				alt=""
@@ -222,7 +222,7 @@
 					class="w-16 aspect-[18/29] object-contain -translate-y-21/29 group-[:has(a:hover)]:-translate-y-16/29 transition-all group-data-pressed:!translate-none group-data-pressed:duration-500 group-data-pressed:ease-in"
 				/>
 			</div>
-		</div>
+		</div> -->
 		<!-- circle effect for after submission -->
 		<div class="rounded-full w-12 h-12 bg-grass -translate-x-2.5 -translate-y-6 scale-0 duration-1500 ease-out group-data-pressed:scale-6000 2xl:group-data-pressed:scale-9000 group-data-pressed:bg-[#171717] transition-[scale,background] delay-[450ms,750ms]"></div>
 	</div>
