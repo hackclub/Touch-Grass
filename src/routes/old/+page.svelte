@@ -40,6 +40,6 @@ gsap.registerPlugin(ScrollTrigger,ScrollSmoother);
     </div>
     <div>
         <h3>My question is unanswered, help???</h3>
-        <p>Feel free to ask it in the slack channel <a href="">#touch-grass.</p>
+        <p>Feel free to ask it in the slack channel <a href="https://hackclub.slack.com/channels/touch-grass">#touch-grass</a>.</p>
     </div>
 </div>

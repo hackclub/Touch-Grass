@@ -7,34 +7,14 @@
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import { ScrollSmoother } from "gsap/ScrollSmoother";
 	import { onMount } from "svelte";
-	import {json} from "@sveltejs/kit";
-
-
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-	let distRan = $state(0);
-	let distGo = $state(0);
-	let test = $state("");
+	let distRan = $state(21.9);
+	let distGo = $state(52.94);
 	let faqs = $state(false);
 
-	let progressBarPercent = $state(0);
+	let progressBarPercent = $state((21.9 / 52.94) * 100);
 	let progressBar: HTMLDivElement;
-
-	async function getDistance() {
-        const result = await fetch('/api/airtable');
-        const datatogo = await result.json();
-		distGo = datatogo["distance"] // total target distance
-
-		const resultRun = await fetch('/api/airtable/run');
-		const dataRun = await resultRun.json();
-		let distanceRan = dataRun.totalDistance; // distance ran
-		distRan = distanceRan;
-		progressBarPercent = (Number(distRan) / Number(distGo)) * 100;
-
-		if (progressBarPercent > 0) {
-			progressBar.style.width = progressBarPercent + "%";
-		}
-	}
 
 	let clouds1: HTMLDivElement;
 	let stars: HTMLDivElement;
@@ -42,7 +22,9 @@
 	let trees: HTMLDivElement;
 
 	onMount(() => {
-		getDistance()
+		if (progressBarPercent > 0) {
+			progressBar.style.width = progressBarPercent + "%";
+		}
 
 		// Register GSAP plugins
 		gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -121,7 +103,6 @@
 <div id="smooth-wrapper">
 <div id="smooth-content">
 <div class="bg-sky-1 w-full min-h-screen relative flex flex-col z-0 items-center overflow-hidden">
-	<button class=" hidden border-2 border-white text-xl absolute top-8 left-10 px-3 py-1 text-white opacity-20 z-1000 hover:opacity-40 cursor-pointer" onclick={getDistance}>{test}</button>
 	<p class="opacity-10 text-4xl absolute top-12 left-5 text-white">Made with &lt;3 by alex and augie</p>
 	<div id="myProgress" class="w-full absolute top-0 left-0 z-10">
 		<p class="absolute right-5 text-4xl text-white top-0">{Math.round(100*(distGo-distRan))/100}km to go</p>
@@ -186,15 +167,15 @@
 			<button class="hover:text-grass-bright hover:cursor-pointer underline decoration-2" onclick={() => faqs = !faqs}>become a VIP</button>,  and you could make us run double
 		</p>
 
-		<div class="w-64 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-[9/16] border-monitor mt-12">
+		<div class="w-64 bg-[url(/monitor-bg.png)] bg-size-[100%_100%] aspect-9/16 border-monitor mt-12">
 			<!-- svelte-ignore a11y_media_has_caption -->
-			<video src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/bc8128dc324c96a40759759917bf5378a73ef1b4_you_ship_we_suffer.mp4" class="w-full h-full" controls></video>
+			<video src="https://cdn.hackclub.com/019c62a4-bcde-7a82-8128-708997218fc2/YOU%20SHIP%20WE%20SUFFER.mp4" class="w-full h-full" controls></video>
 		</div>
 
 	</div>
 	{/if}
 
-	<div class="w-full grow-1 min-h-24"></div>
+	<div class="w-full grow min-h-24"></div>
 
 	
 	<!-- submit button -->
