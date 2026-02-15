@@ -1,23 +1,30 @@
-# Use Node.js LTS version
-FROM node:20-alpine
+FROM oven/bun:1-alpine AS build
 
-# Set the working directory
 WORKDIR /app
 
-# Copy package files
-COPY package.json bun.lock* package-lock.json* ./
+COPY package.json bun.lock ./
 
-# Install all dependencies (needed for build)
-RUN npm ci
+RUN bun install --frozen-lockfile
 
-# Copy source code
 COPY . .
 
-# Build the application
-RUN npm run build
+ARG PASSPHRASE
+ARG airtableAPIKey
+ARG runnerSecret
+ENV PASSPHRASE=$PASSPHRASE
+ENV airtableAPIKey=$airtableAPIKey
+ENV runnerSecret=$runnerSecret
 
-# Expose the port the app runs on
+RUN bun run build
+
+FROM oven/bun:1-alpine
+
+WORKDIR /app
+
+COPY --from=build /app/build ./build
+COPY --from=build /app/package.json ./
+COPY --from=build /app/node_modules ./node_modules
+
 EXPOSE 3000
 
-# Start the application
-CMD ["node", "build"]
+CMD ["bun", "run", "build/index.js"]
